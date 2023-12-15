@@ -1,0 +1,24 @@
+{% sw_extends '@Storefront/storefront/component/listing/filter/filter-property-select.html.twig' %}
+
+{% block component_filter_multi_select_list_item %}
+    <li class="filter-multi-select-list-item filter-property-select-list-item" {% if displayType == 'color' %} data-is_prop_bc_color = "true" {% endif %} {% if displayType == 'media' %} data-is_prop_bc_media = "true" {% endif %}>
+        {% if displayType == 'color' or displayType == 'media' %}
+            {% set color = element.colorHexCode %}
+            {% set media = element.media.url %}
+            {% set name = element.translated.name %}
+            {% set id = element.id %}
+            {% block component_filter_property_select_preview %}
+                {{ parent() }}
+            {% endblock %}
+            {% if not hideTitle %}
+                {% block component_filter_property_select_preview_list_item_label_element %}
+                   {{ parent() }}
+                {% endblock %}
+            {% endif %}
+        {% else %}
+            {% block component_filter_property_select_preview_list_item %}
+                {{ parent() }}
+            {% endblock %}
+        {% endif %}
+    </li>
+{% endblock %}

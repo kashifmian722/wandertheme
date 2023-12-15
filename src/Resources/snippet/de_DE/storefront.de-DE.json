@@ -1,0 +1,43 @@
+{
+    "bc-wl-product-detail-social-media" : {
+		"shareTitle": "Teilen Sie mich"
+	},
+	"bc-wl-landing-promotion-bar" : {
+		"promotionContentTitle1" : "Kostenlose Lieferung ab € 50,- Bestellwert",
+		"promotionContentTitle2" : "Lieferung innerhalb von 24h*",
+		"promotionContentTitle3" : "30 Tage Rückerstattungsgarantie",
+		"promotionContentTitle4" : "Kostenlose Hotline ",
+		"hotlineNumber" : "0800 123 454 321",
+		"promotionContentTitle5" : "Laden"
+	},
+	"bc-wl-footer-additional-block" : {
+		"footerBlock1Title" : "Nehmen Sie Kontakt mit uns auf",
+		"footerBlock2Title" : "Einen Laden finden",
+		"footerBlock3Title" : "App herunterladen",
+		"footerStoreBtnTitle" : "Store Locator"
+	},
+	"bc-wl-cms-section-slider-block" : {
+		"sliderCloseTitle" : "schließen",
+		"categorySliderTitle" : "Kategorie & Filter" ,
+		"filterSliderTitle" : "Filter"
+	},
+	"bc-wl-footer-newsletter" : {
+		"headLine" : "Mitteilungsblatt",
+		"description" : "Abonnieren Sie den kostenlosen Newsletter und stellen Sie sicher, dass Sie keine Neuigkeiten oder Sonderangebote mehr verpassen..",
+		"subscribeButton" : "Newsletter abonnieren",
+		"newsletterInfo" : "Newsletter-Layout zuweisen, dann wird die Newsletter-Schaltfläche hier angezeigt"
+	},
+	"bc-wl-social-media-icons-title" : {
+		"facebook" : "Facebook",
+		"twitter" : "Twitter",
+		"youtube" : "YouTube",
+		"instagram" : "Instagram",
+		"whatsapp" : "WhatsApp",
+		"xing" : "XING"
+	},
+	"bc-wl-alt-text" : {
+		"appPlatformTitle1" : "Apple App Store",
+		"appPlatformTitle2" : "Google Play Store",
+		"readMoreTitle" : "Lesen Sie mehr..."
+	}
+}

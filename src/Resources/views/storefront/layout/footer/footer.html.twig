@@ -1,0 +1,149 @@
+{% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %} 
+
+{% set bcPluginSettings = context.saleschannel.id|getWlPluginConfig %}
+{% set bcThemeSettings = context.saleschannel.id|getWlThemeSettings %}
+
+{% block layout_footer_inner_container %}
+    <div class="container-fluid p-0">
+		{% block layout_footer_navigation %}
+			<div id="footerColumns"
+				 class="row footer-columns"
+				 data-collapse-footer="true">
+				{% if bcPluginSettings['bcwlenablenewsletter'] %}
+					{% set bc_newsletterPageId = page.getExtension('BrandCrockWanderlust').bcWlNewsletterPage %}
+					<div class="bc-wl-footer-newsletter">
+						<div class="bc-wl-newsletter-container">
+							<span class="h2 bc-wl-newsletter-headline">{{ 'bc-wl-footer-newsletter.headLine'|trans|sw_sanitize }}</span>
+							<div class="bc-wl-newsletter-text">{{ 'bc-wl-footer-newsletter.description'|trans|sw_sanitize }}</div>
+							{% if page.getExtension('BrandCrockWanderlust').bcWlDoubleOptIn and bc_newsletterPageId %}
+								<div class="bc-wl-newsletter-button">
+									<a href="{{ path('frontend.cms.page',{ id: bc_newsletterPageId }) }}"
+									   data-toggle="modal"
+									   data-url="{{ path('frontend.cms.page',{ id: bc_newsletterPageId }) }}"
+									   data-modal-class="modal-bc-wl-newsletter"
+									   title="{{ 'bc-wl-footer-newsletter.subscribeButton'|trans|sw_sanitize }}"
+									   rel="noopener"
+									   class="btn btn-bc-wl-newsletter">
+									   {{ 'bc-wl-footer-newsletter.subscribeButton'|trans|sw_sanitize }}
+									</a>
+								</div>
+							{% else %}
+								<div class="bc-wl-newsletter-msg">
+									{{ 'bc-wl-footer-newsletter.newsletterInfo'|trans|sw_sanitize }}
+								</div>
+							{% endif %}
+						</div>
+					</div>
+				{% endif %}
+				{% block layout_footer_navigation_hotline %}
+					<div class="col-md-4 footer-column js-footer-column">
+						{% block layout_footer_navigation_hotline_headline %}
+							 {{ parent() }}
+						{% endblock %}
+
+						{% block layout_footer_navigation_hotline_content %}
+							 {{ parent() }}
+						{% endblock %}
+					</div>
+				{% endblock %}
+
+				{% block layout_footer_navigation_columns %}
+					{{ parent() }}
+				{% endblock %}
+			</div>
+		{% endblock %}
+
+		{% block layout_footer_payment_shipping_logos %}
+			{{ parent() }}
+			<div class="additional_info_block row">
+				{% if (bcPluginSettings['bcwlenablefootersocialicon']) and ( bcPluginSettings['bcwlenablefacebook'] or bcPluginSettings['bcwlenabletwitter'] or bcPluginSettings['bcwlenableinstagram'] or bcPluginSettings['bcwlenableyoutube'] or bcPluginSettings['bcwlenablexing'] ) %}
+					<div class="col-lg-4 col-md-4 col-xs-12 custom_additional_block">
+						<span class="h5 info_heading">{{ "bc-wl-footer-additional-block.footerBlock1Title" | trans }}</span>
+						<div class="social_media_icon">
+							<ul>
+							  {% if bcPluginSettings['bcwlenablefacebook'] and bcPluginSettings['bcwlenablefacebookurl'] is not empty %}
+								<li class="icon--facebook">
+									<a href="{{ bcPluginSettings['bcwlenablefacebookurl'] }}" id="facebook" rel="noopener" target="_blank" title="{{ "bc-wl-social-media-icons-title.facebook" | trans }}">
+									<svg width="14" height="25" viewBox="0 0 14 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.5122 14.0625L13.2065 9.53809H8.86523V6.60205C8.86523 5.36426 9.47168 4.15771 11.416 4.15771H13.3896V0.305664C13.3896 0.305664 11.5986 0 9.88623 0C6.31104 0 3.97412 2.16699 3.97412 6.08984V9.53809H0V14.0625H3.97412V25H8.86523V14.0625H12.5122Z" fill="black"/></svg>
+									</a>
+								</li>
+							  {% endif %}
+							  {% if bcPluginSettings['bcwlenabletwitter'] and bcPluginSettings['bcwlenabletwitterurl'] is not empty %}
+								<li class="icon--twitter">
+									<a href="{{ bcPluginSettings['bcwlenabletwitterurl'] }}"  id="twitter" rel="noopener" target="_blank" title="{{ "bc-wl-social-media-icons-title.twitter" | trans }}">
+									<svg width="25" height="21" viewBox="0 0 25 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.4302 5.06025C22.446 5.28232 22.446 5.50444 22.446 5.72651C22.446 12.5 17.2906 20.3045 7.86802 20.3045C4.96509 20.3045 2.26841 19.4638 0 18.0044C0.412451 18.052 0.808984 18.0679 1.2373 18.0679C3.63257 18.0679 5.83755 17.2589 7.59834 15.8788C5.3458 15.8312 3.45811 14.356 2.80771 12.3255C3.125 12.373 3.44224 12.4048 3.77539 12.4048C4.2354 12.4048 4.69546 12.3413 5.12373 12.2303C2.77603 11.7544 1.01519 9.69224 1.01519 7.20176V7.13833C1.69727 7.51904 2.49048 7.75698 3.33115 7.78867C1.95107 6.8686 1.04692 5.29819 1.04692 3.52153C1.04692 2.56978 1.30068 1.69731 1.74487 0.935889C4.26709 4.04502 8.05835 6.07544 12.3096 6.29756C12.2303 5.91685 12.1827 5.52031 12.1827 5.12373C12.1827 2.3001 14.4669 0 17.3064 0C18.7816 0 20.1141 0.618652 21.05 1.61802C22.208 1.39595 23.3184 0.967627 24.302 0.380713C23.9212 1.57046 23.1122 2.56982 22.0494 3.2043C23.0805 3.09331 24.0799 2.80771 24.9999 2.41118C24.3021 3.42637 23.4295 4.33052 22.4302 5.06025V5.06025Z" fill="black"/></svg>
+									</a>
+								</li>
+							  {% endif %}
+							  {% if bcPluginSettings['bcwlenableinstagram'] and bcPluginSettings['bcwlenableinstagramurl'] is not empty %}
+								 <li class="icon--instagram">
+									<a href="{{ bcPluginSettings['bcwlenableinstagramurl'] }}" id="instagram" rel="noopener" target="_blank" title="{{ "bc-wl-social-media-icons-title.instagram" | trans }}">
+									<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.946 5.33081C7.84058 5.33081 5.33569 7.83569 5.33569 10.9412C5.33569 14.0466 7.84058 16.5515 10.946 16.5515C14.0515 16.5515 16.5564 14.0466 16.5564 10.9412C16.5564 7.83569 14.0515 5.33081 10.946 5.33081ZM10.946 14.5886C8.93921 14.5886 7.29858 12.9529 7.29858 10.9412C7.29858 8.92944 8.93433 7.2937 10.946 7.2937C12.9578 7.2937 14.5935 8.92944 14.5935 10.9412C14.5935 12.9529 12.9529 14.5886 10.946 14.5886V14.5886ZM18.0945 5.10132C18.0945 5.82886 17.5085 6.40991 16.7859 6.40991C16.0584 6.40991 15.4773 5.82397 15.4773 5.10132C15.4773 4.37866 16.0632 3.79272 16.7859 3.79272C17.5085 3.79272 18.0945 4.37866 18.0945 5.10132ZM21.8103 6.42944C21.7273 4.67651 21.3269 3.12378 20.0427 1.84448C18.7634 0.565185 17.2107 0.164795 15.4578 0.0769043C13.6511 -0.0256348 8.23608 -0.0256348 6.42944 0.0769043C4.6814 0.159912 3.12866 0.560303 1.84448 1.8396C0.560303 3.1189 0.164795 4.67163 0.0769043 6.42456C-0.0256348 8.2312 -0.0256348 13.6462 0.0769043 15.4529C0.159912 17.2058 0.560303 18.7585 1.84448 20.0378C3.12866 21.3171 4.67651 21.7175 6.42944 21.8054C8.23608 21.908 13.6511 21.908 15.4578 21.8054C17.2107 21.7224 18.7634 21.322 20.0427 20.0378C21.322 18.7585 21.7224 17.2058 21.8103 15.4529C21.9128 13.6462 21.9128 8.23608 21.8103 6.42944V6.42944ZM19.4763 17.3914C19.0955 18.3484 18.3582 19.0857 17.3962 19.4714C15.9558 20.0427 12.5378 19.9109 10.946 19.9109C9.35425 19.9109 5.9314 20.0378 4.49585 19.4714C3.53882 19.0906 2.80151 18.3533 2.41577 17.3914C1.84448 15.9509 1.97632 12.533 1.97632 10.9412C1.97632 9.34937 1.84937 5.92651 2.41577 4.49097C2.79663 3.53394 3.53394 2.79663 4.49585 2.41089C5.93628 1.8396 9.35425 1.97144 10.946 1.97144C12.5378 1.97144 15.9607 1.84448 17.3962 2.41089C18.3533 2.79175 19.0906 3.52905 19.4763 4.49097C20.0476 5.9314 19.9158 9.34937 19.9158 10.9412C19.9158 12.533 20.0476 15.9558 19.4763 17.3914Z" fill="black"/></svg>
+									</a>
+								</li>
+							  {% endif %}
+							  {% if bcPluginSettings['bcwlenableyoutube'] and bcPluginSettings['bcwlenableyoutubeurl'] is not empty %}
+								<li class="icon--video">
+									<a href="{{ bcPluginSettings['bcwlenableyoutubeurl'] }}" id="youtube" rel="noopener" target="_blank" title="{{ "bc-wl-social-media-icons-title.youtube" | trans }}">
+									<svg width="24" height="17" viewBox="0 0 24 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.2084 2.60777C22.9358 1.58129 22.1326 0.772873 21.1128 0.498524C19.2642 0 11.8519 0 11.8519 0C11.8519 0 4.43954 0 2.59097 0.498524C1.57114 0.772917 0.767925 1.58129 0.495312 2.60777C0 4.46832 0 8.35017 0 8.35017C0 8.35017 0 12.232 0.495312 14.0926C0.767925 15.1191 1.57114 15.8938 2.59097 16.1681C4.43954 16.6667 11.8519 16.6667 11.8519 16.6667C11.8519 16.6667 19.2642 16.6667 21.1128 16.1681C22.1326 15.8938 22.9358 15.1191 23.2084 14.0926C23.7037 12.232 23.7037 8.35017 23.7037 8.35017C23.7037 8.35017 23.7037 4.46832 23.2084 2.60777V2.60777ZM9.4276 11.8746V4.82574L15.6229 8.35026L9.4276 11.8746V11.8746Z" fill="black"/></svg>
+									</a>
+								</li>
+							  {% endif %}
+							  {% if bcPluginSettings['bcwlenablexing'] and bcPluginSettings['bcwlenablexingeurl'] is not empty %}
+								<li class="icon--xing">
+									<a href="{{ bcPluginSettings['bcwlenablexingeurl'] }}" id="xing" rel="noopener" target="_blank" title="{{ "bc-wl-social-media-icons-title.xing" | trans }}">
+									<svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.9431 8.69141C7.85521 8.85254 6.71263 10.8594 4.52025 14.7217C4.28099 15.127 3.9929 15.332 3.65599 15.332H0.477279C0.101303 15.332 -0.113541 14.9658 0.06224 14.6289L3.43138 8.70605C3.44115 8.70605 3.44115 8.70117 3.43138 8.69141L1.28783 5C1.07787 4.61914 1.30247 4.31152 1.70287 4.31152H4.88158C5.23802 4.31152 5.53099 4.51172 5.76048 4.90723L7.9431 8.69141ZM18.6804 0.688476L11.6492 13.042V13.0566L16.1218 21.1914C16.3122 21.5381 16.1316 21.8799 15.7068 21.8799H12.5232C12.1521 21.8799 11.8591 21.6846 11.6443 21.2842L7.13255 13.0566C7.29369 12.7734 9.6472 8.62305 14.2029 0.595703C14.4275 0.200195 14.7107 0 15.0574 0H18.2654C18.656 0 18.866 0.327148 18.6804 0.688476V0.688476Z" fill="black"/></svg>
+									</a>
+								</li>
+							  {% endif %}
+						   </ul>
+						 </div>
+					</div>
+				{% endif %}
+				{% if bcPluginSettings['bcwlenablestoremap'] %}
+					<div class="col-lg-4 col-md-4 col-xs-12 custom_additional_block">
+						<span class="h5 info_heading">{{ "bc-wl-footer-additional-block.footerBlock2Title" | trans }}</span>
+						{% if bcPluginSettings['bcwlstoreurl'] is not empty %}
+							<div class="store_location_block">
+								<a href="{{ bcPluginSettings['bcwlstoreurl'] }}" rel="noopener" target="_blank" class="btn bc_store_btn" title="{{ "bc-wl-footer-additional-block.footerBlock2Title" | trans }}">
+									<svg width="12" height="18" viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.38338 17.6368C0.842813 10.2316 0 9.47155 0 6.75C0 3.02207 2.68628 0 6 0C9.31372 0 12 3.02207 12 6.75C12 9.47155 11.1572 10.2316 6.61662 17.6368C6.31866 18.1211 5.68131 18.121 5.38338 17.6368ZM6 9.5625C7.38072 9.5625 8.5 8.30331 8.5 6.75C8.5 5.19669 7.38072 3.9375 6 3.9375C4.61928 3.9375 3.5 5.19669 3.5 6.75C3.5 8.30331 4.61928 9.5625 6 9.5625Z" fill="black"/></svg>
+									<span>{{ "bc-wl-footer-additional-block.footerStoreBtnTitle" | trans }}</span>
+								</a>
+							</div>
+						{% endif %}
+					</div>
+				{% endif %}
+				{% if (bcPluginSettings['bcwlenableappicon1']) or (bcPluginSettings['bcwlenableappicon2']) %}
+					 <div class="col-lg-4 col-md-4 col-xs-12 custom_additional_block">
+						<span class="h5 info_heading">{{ "bc-wl-footer-additional-block.footerBlock3Title" | trans }}</span>
+						<div class="app_platform_list">
+							<div class="feature_app_block">
+								{% if bcPluginSettings['bcwlenableappicon1'] and bcThemeSettings['bc-wl-app-platform-icon1']['value'] %}
+									<div class="aligncenter">
+										<div class="app_img_block">
+											<a href="{{ bcPluginSettings['bcwlappurl1'] }}" title="{{ "bc-wl-alt-text.appPlatformTitle1" | trans }}" rel="noopener" target="_blank">
+												<img src="{{ searchMedia([bcThemeSettings['bc-wl-app-platform-icon1']['value']], context.context).get(bcThemeSettings['bc-wl-app-platform-icon1']['value']).url |sw_encode_url }}" alt="{{ "bc-wl-alt-text.appPlatformTitle1" | trans }}" />
+											</a>
+										</div>
+									</div>
+								{% endif %}
+								{% if bcPluginSettings['bcwlenableappicon2'] and bcThemeSettings['bc-wl-app-platform-icon2']['value'] %}
+									<div class="aligncenter">
+										<div class="app_img_block">
+											<a href="{{ bcPluginSettings['bcwlappurl2'] }}" title="{{ "bc-wl-alt-text.appPlatformTitle2" | trans }}" rel="noopener" target="_blank">
+												<img src="{{ searchMedia([bcThemeSettings['bc-wl-app-platform-icon2']['value']], context.context).get(bcThemeSettings['bc-wl-app-platform-icon2']['value']).url |sw_encode_url }}" alt="{{ "bc-wl-alt-text.appPlatformTitle2" | trans }}"/>
+											</a>
+										</div>
+									</div>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				{% endif %}
+			</div>
+		{% endblock %}
+	</div>
+	{% block layout_footer_bottom %}
+	   {{ parent() }}
+	{% endblock %}
+{% endblock %}

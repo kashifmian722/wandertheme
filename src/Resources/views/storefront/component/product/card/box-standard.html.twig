@@ -1,0 +1,55 @@
+{% sw_extends '@Storefront/storefront/component/product/card/box-standard.html.twig' %}
+
+{% block component_product_box_info %}
+	<div class="product-info">
+		<div class="bc-wl-view-more">
+			<span class="product-overlay-close">
+				{% sw_icon 'x-circle' %}
+			</span>
+			<div class="bc-wl-product-img">
+				{% sw_thumbnails 'product-image-thumbnails' with {
+					media: cover,
+					sizes: {
+						'xs': '501px',
+						'sm': '315px',
+						'md': '427px',
+						'lg': '333px',
+						'xl': '284px'
+					}
+				} %}
+			</div>
+			<div class="bc-wl-product-info">
+
+				{% block component_product_box_variant_characteristics %}
+					{{ parent() }}
+				{% endblock %}
+				{% block component_product_box_description %}
+					{{ parent() }}
+				{% endblock %}
+			</div>
+		</div>
+		{% block component_product_box_name %}
+			{{ parent() }}
+		{% endblock %}
+		{% block component_product_box_price %}
+			{{ parent() }}
+		{% endblock %}
+						{% block component_product_box_rating %}
+    {% if product.ratingAverage %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+		<div class="product-action-container">
+			{% block component_product_box_action %}
+				{{ parent() }}
+			{% endblock %}
+			<button class="btn btn-detail-view" title="More info about product" aria-label="More info about product">
+				<span class="bc-product-view-icon">
+					{% sw_icon 'eye-open' %}
+				</span>
+			</button>
+		</div>
+	</div>	
+{% endblock %}
+
+

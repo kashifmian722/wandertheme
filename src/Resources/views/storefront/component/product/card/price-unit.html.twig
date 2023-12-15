@@ -1,0 +1,13 @@
+{% sw_extends '@Storefront/storefront/component/product/card/price-unit.html.twig' %}
+
+{% block component_product_box_price_unit %}
+	{% if (purchaseUnit and purchaseUnit != 0) or (referencePrice is not null or referncePrice is not null)  %}
+		{{ parent() }}
+	{% endif %}
+{% endblock %}
+
+{% block component_product_box_price_info %}
+    {% if product.customFields['productType'] != 'storeWindow' %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

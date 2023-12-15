@@ -1,0 +1,35 @@
+{% sw_extends '@Storefront/storefront/component/product/card/action.html.twig' %}
+
+{% block component_product_box_action_form %}
+	{% block component_product_box_action_buy_redirect_input %}
+		{{ parent() }}
+	{% endblock %}
+	{% block page_product_detail_buy_product_buy_info %}
+		{{ parent() }}
+	{% endblock %}
+	{% block page_product_detail_product_buy_meta %}
+		{{ parent() }}
+	{% endblock %}
+	<button class="btn btn-block btn-buy" title="{{ "listing.boxAddProduct"|trans|striptags }}" aria-label="{{ "listing.boxAddProduct"|trans|striptags }}">
+		<span class="bc-product-cart-icon">
+			{% sw_icon 'bag' %}
+		</span>
+	</button>
+{% endblock %}
+{% block component_product_box_action_detail %}
+	<a href="{{ seoUrl('frontend.detail.page', {'productId': id}) }}"
+		class="btn btn-block btn-light"
+		title="{{ "listing.boxProductDetails"|trans|striptags }}"
+		rel="noopener">
+		<span class="bc-detail-icon">
+			{% sw_icon 'content' %}
+		</span>
+	</a>
+{% endblock %}
+
+{% block component_product_box_action_inner %}
+    {% if product.customFields['productType'] != 'storeWindow' %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+

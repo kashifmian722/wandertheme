@@ -1,0 +1,43 @@
+{
+    "bc-wl-product-detail-social-media" : {
+		"shareTitle": "Share Me"
+	},
+	"bc-wl-landing-promotion-bar" : {
+		"promotionContentTitle1" : "Free delivery from € 50,- order value",
+		"promotionContentTitle2" : "Delivery within 24h*",
+		"promotionContentTitle3" : "30 days refund warranty",
+		"promotionContentTitle4" : "Free hotline ",
+		"hotlineNumber" : "0800 123 454 321",
+		"promotionContentTitle5" : "Store"
+	},
+	"bc-wl-footer-additional-block" : {
+		"footerBlock1Title" : "Get in Touch With Us",
+		"footerBlock2Title" : "Find a Store",
+		"footerBlock3Title" : "Download App",
+		"footerStoreBtnTitle" : "Store Locator"
+	},
+	"bc-wl-cms-section-slider-block" : {
+		"sliderCloseTitle" : "Close",
+		"categorySliderTitle" : "Category & Filters",
+		"filterSliderTitle" : "Filter"
+	},
+	"bc-wl-footer-newsletter" : {
+		"headLine" : "Newsletter",
+		"description" : "Subscribe to the free newsletter and ensure that you will no longer miss any news or special offers.",
+		"subscribeButton" : "Subscribe Newsletter",
+		"newsletterInfo" : "Assign newsletter layout, then the newsletter button will be displayed here"
+	},
+	"bc-wl-social-media-icons-title" : {
+		"facebook" : "Facebook",
+		"twitter" : "Twitter",
+		"youtube" : "YouTube",
+		"instagram" : "Instagram",
+		"whatsapp" : "WhatsApp",
+		"xing" : "XING"
+	},
+	"bc-wl-alt-text" : {
+		"appPlatformTitle1" : "Apple App Store",
+		"appPlatformTitle2" : "Google Play Store",
+		"readMoreTitle" : "Read More..."
+	}
+}

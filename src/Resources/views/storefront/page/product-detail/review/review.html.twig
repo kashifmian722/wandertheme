@@ -1,0 +1,25 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/review/review.html.twig' %}
+
+{% block page_product_detail_review_aside %}
+	<div class="col-12 col-lg-4">
+		{% block page_product_detail_review_widget_container %}
+			{{ parent() }}
+		{% endblock %}
+	</div>
+{% endblock %}
+
+{% block page_product_detail_review_main %}
+	<div class="col-12 product-detail-review-main js-review-content col-lg-8">
+		{% block page_product_detail_review_alert %}
+			{{ parent() }}
+		{% endblock %}
+
+		{% block page_product_detail_review_form_container %}
+			{{ parent() }}
+		{% endblock %}
+
+		{% block page_product_detail_review_list_container %}
+			{{ parent() }}
+		{% endblock %}
+	</div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% sw_extends '@Storefront/storefront/layout/header/header.html.twig' %}
+
+{% block layout_top_bar %}
+	{% sw_include '@Storefront/storefront/layout/header/top-bar.html.twig' %}
+{% endblock %}
+
+{% block layout_header_navigation %}
+	<div class="row header_container">
+		<div class="col-xl-2 col-sm-3 col bc-wl-logo text-sm-left">
+      
+            {% block layout_header_logo %}
+				<div class="header-logo-col">
+                    {% sw_include '@Storefront/storefront/layout/header/logo.html.twig' %}
+				</div>
+            {% endblock %}
+		</div>
+		<div class="col-xl-10 col-sm-9 col bc-nav-right d-flex">
+			<div class="col-lg-9 bc_inner_block_left d-none d-xl-flex">
+				{% block base_navigation_inner %}
+					<div class="d-none d-xl-block">
+						{% sw_include '@Storefront/storefront/layout/navigation/navigation.html.twig' %}
+					</div>
+				{% endblock %}
+			</div>
+			<div class="col-lg-3 bc_inner_block_right">
+				<div class="shop_action_block">
+					<div class="search-toggle">
+						<button class="btn header-actions-btn search-toggle-btn js-search-toggle-btn collapsed"
+								type="button"
+								data-toggle="collapse"
+								data-target="#searchCollapse"
+								aria-expanded="false"
+								aria-controls="searchCollapse"
+								aria-label="{{ "header.searchButton"|trans|striptags }}">
+							{% sw_icon 'search' %}
+						</button>
+					</div>
+					{% if page.getExtension('BrandCrockWanderlust').bcWlWishlistEnabled %}
+						{% block layout_header_actions_wishlist %}
+							{{ parent() }}
+						{% endblock %}
+					{% endif %}
+					<div class="account-menu">
+						{% sw_include '@Storefront/storefront/layout/header/actions/account-widget.html.twig' %}
+					</div>
+					<div class="header-cart"
+						 data-offcanvas-cart="true">
+						<a class="btn header-cart-btn header-actions-btn"
+							href="{{ path('frontend.checkout.cart.page') }}"
+							data-cart-widget="true"
+							title="{{ 'checkout.cartTitle'|trans|striptags }}"
+							aria-label="{{ 'checkout.cartTitle'|trans|striptags }}"
+							rel="noopener"
+							target="_blank">
+							{% sw_include '@Storefront/storefront/layout/header/actions/cart-widget.html.twig' %}
+						</a>
+					</div>
+                   {% block layout_header_navigation_toggle_tablet_button %}
+				<button class="btn nav-main-toggle-btn header-actions-btn d-xl-none bc_wl_menu_stack"
+						type="button"
+						data-offcanvas-menu="true"
+						aria-label="{{ "general.menuLink"|trans|striptags }}">
+					{% block layout_header_navigation_toggle_tablet_button_icon %}
+						{% sw_icon 'stack' %}
+					{% endblock %}
+				</button>
+			{% endblock %}
+					{% if  page.header.languages.count > 1 %}
+						<div class="rhweb-language-widget-container ml-3">
+							{% sw_include '@Storefront/storefront/layout/header/actions/language-widget.html.twig' %}
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

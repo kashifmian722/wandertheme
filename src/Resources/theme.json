@@ -1,0 +1,481 @@
+{
+  "blocks": [
+		{
+			"name": "Custom Search Block",
+			"template": "@Storefront/storefront/block/shopping_world_search_block.html.twig",
+			"category": "forms"
+		}
+	],
+	"name": "Wanderlust - Theme",
+	"author": "BrandCrock GmbH",
+	"previewMedia": "public/storefront/img/bc_wl_preview.png",
+	"style": [
+		"@Storefront",
+		"app/storefront/src/scss/base.scss"
+	],
+	"script": [
+		"@Storefront",
+		"app/storefront/dist/storefront/js/brand-crock-wanderlust.js"
+	],
+	"asset": [
+		"@Storefront"
+	],
+	"views": [
+		"@Storefront",     
+		"@BrandCrockWanderlust",
+		"@Plugins"
+	],
+	"config": {
+		"blocks": {
+			"BcWlTheme": {
+                "label": {
+                    "en-GB": "Theme colors",
+                    "de-DE": "Farben zum Thema"
+                }
+            },
+			"statusColors": {
+				"label": {
+					"en-GB": "Status messages",
+					"de-DE": "Status-Ausgaben"
+				}
+			},
+            "BcWlMedia": {
+                "label": {
+                    "en-GB": "Logos & Icons",
+                    "de-DE": "Logos und Ikonen"
+                }
+            },
+            "BcWlLoader": {
+				"label": {
+                    "en-GB": "Loader",
+                    "de-DE": "Lader"
+                }
+			},
+			"BcWlHeader" : {
+				"label": {
+                    "en-GB": "Header",
+                    "de-DE": "Kopfzeile"
+                }
+			},
+			"BcWlProduct" : {
+				"label": {
+                    "en-GB": "Products",
+                    "de-DE": "Produkte"
+                }
+			},
+			"BcWlGeneral" : {
+				"label": {
+                    "en-GB": "General",
+                    "de-DE": "Allgemein"
+                }
+			},
+			"BcWlFooter": {
+				"label": {
+                    "en-GB": "Footer",
+                    "de-DE": "Fußzeile"
+                }
+			}
+		},
+		"fields": {
+			"sw-color-brand-primary": {
+                "label": {
+                    "en-GB": "Primary colour",
+                    "de-DE": "Primärfarbe"
+                },
+                "type": "color",
+                "value": "#131313",
+                "editable": true,
+                "block": "BcWlTheme",
+                "order": 100
+            },
+			"sw-color-brand-secondary": {
+                "label": {
+                    "en-GB": "Secondary colour",
+                    "de-DE": "Sekundäre Farbe"
+                },
+                "type": "color",
+                "value": "#82ae46",
+                "editable": true,
+                "block": "BcWlTheme",
+                "order": 200
+            },
+			"sw-border-color": {
+                "label": {
+                    "en-GB": "Border",
+                    "de-DE": "Grenze"
+                },
+                "type": "color",
+                "value": "#bcc1c7",
+                "editable": true,
+                "block": "BcWlTheme",
+                "order": 300
+            },
+			"sw-background-color": {
+                "label": {
+                    "en-GB": "Background",
+                    "de-DE": "Hintergrund"
+                },
+                "type": "color",
+                "value": "#FFFFFF",
+                "editable": true,
+                "block": "BcWlTheme",
+                "order": 400
+            },
+			"bc-wl-status-text-color": {
+				"label": {
+					"en-GB": "Text color",
+					"de-DE": "Textfarbe"
+				},
+				"type": "color",
+				"value": "#FFFFFF",
+				"editable": true,
+				"block": "statusColors",
+				"order": 500
+			},
+			"sw-logo-desktop": {
+                "label": {
+                    "en-GB": "Desktop",
+                    "de-DE": "Schreibtisch"
+                },
+                "helpText": {
+                    "en-GB": "Displayed for viewports of above 991px",
+                    "de-DE": "Wird über einem Viewport von 991px angezeigt"
+                },
+                "type": "media",
+                "value": "public/storefront/img/bc_wl_logo.png",
+                "editable": true,
+                "block": "BcWlMedia",
+                "order": 100
+            },
+            "sw-logo-tablet": {
+                "label": {
+                    "en-GB": "Tablet",
+                    "de-DE": "Tablette"
+                },
+                "helpText": {
+                    "en-GB": "Displayed between a viewport of 767px to 991px",
+                    "de-DE": "Wird zwischen einem viewport von 767px bis 991px angezeigt"
+                },
+                "type": "media",
+                "value": "public/storefront/img/bc_wl_logo.png",
+                "editable": true,
+                "block": "BcWlMedia",
+                "order": 200
+            },
+            "sw-logo-mobile": {
+                "label": {
+                    "en-GB": "Mobile",
+                    "de-DE": "Mobil"
+                },
+                "helpText": {
+                    "en-GB": "Displayed up to a viewport of 767px",
+                    "de-DE": "Wird bis zu einem Viewport von 767px angezeigt"
+                },
+                "type": "media",
+                "value": "public/storefront/img/bc_wl_logo.png",
+                "editable": true,
+                "block": "BcWlMedia",
+                "order": 300
+            },
+            "sw-logo-share": {
+                "label": {
+                    "en-GB": "App & share icon",
+                    "de-DE": "Symbol zum Anwenden und Freigeben"
+                },
+                "type": "media",
+                "value": "public/storefront/img/bc_wl_favicon.png",
+                "editable": true,
+                "block": "BcWlMedia",
+                "order": 400
+            },
+            "sw-logo-favicon": {
+                "label": {
+                    "en-GB": "Favicon",
+                    "de-DE": "Favicon"
+                },
+                "type": "media",
+                "value": "public/storefront/img/bc_wl_favicon.png",
+                "editable": true,
+                "block": "BcWlMedia",
+                "order": 500
+            },
+			"bc-wl-loader-img": {
+                "label": {
+                    "en-GB": "Loader Image",
+                    "de-DE": "Loader Image"
+                },
+                "type": "media",
+                "value": "public/storefront/img/bc_wl_spinner.gif",
+                "editable": true,
+                "block": "BcWlLoader",
+                "order": 100
+            },
+			"bc-wl-loader-page-color": {
+                "label": {
+                    "en-GB": "Loader Page Background Color",
+                    "de-DE": "Laderseite Hintergrundfarbe"
+                },
+                "type": "color",
+                "value": "#FFFFFF",
+                "editable": true,
+                "block": "BcWlLoader",
+                "order": 200
+            },
+            "bc-wl-primary-color": {
+                "label": {
+                    "en-GB": "Primary Color",
+                    "de-DE": "Primärfarbe"
+                },
+                "type": "color",
+                "value": "#FFFFFF",
+                "editable": true,
+                "block": "BcWlHeader",
+                "order": 100
+            },
+			"bc-wl-secondary-color": {
+                "label": {
+                    "en-GB": "Secondary Color",
+                    "de-DE": "Sekundäre Farbe"
+                },
+                "type": "color",
+                "value": "#131313",
+                "editable": true,
+                "block": "BcWlHeader",
+                "order": 200
+            },
+            "bc-wl-background-color": {
+                "label": {
+                    "en-GB": "Background Color",
+                    "de-DE": "Hintergrundfarbe"
+                },
+                "type": "color",
+                "value": "#000000b3",
+                "editable": true,
+                "block": "BcWlHeader",
+                "order": 300
+            },
+			"bc-wl-main-font-size": {
+                "label": {
+                    "en-GB": "Main Category Font Size",
+                    "de-DE": "Hauptkategorie Schriftgröße"
+                },
+                "type": "custom",
+                "value": "16px",
+                "editable": true,
+                "block": "BcWlHeader",
+                "order": 500
+            },
+            "bc-wl-sub-font-size": {
+                "label": {
+                    "en-GB": "Sub Category Font Size",
+                    "de-DE": "Unterkategorie Schriftgröße"
+                },
+                "type": "custom",
+                "value": "16px",
+                "editable": true,
+                "block": "BcWlHeader",
+                "order": 600
+            },
+			"bc-wl-text-highlight-color": {
+                "label": {
+                    "en-GB": "Text Highlight Color",
+                    "de-DE": "Text-Highlight-Farbe"
+                },
+                "type": "color",
+                "value": "#82ae46",
+                "editable": true,
+                "block": "BcWlHeader",
+                "order": 700
+            },
+            "bc-wl-search-background-color": {
+                "label": {
+                    "en-GB": "Search box background color",
+                    "de-DE": "Hintergrundfarbe des Suchfelds"
+                },
+                "type": "color",
+                "value": "#FFFFFF",
+                "editable": true,
+                "block": "BcWlHeader",
+                "order": 800
+            },
+            "bc-wl-product-primary": {
+                "label": {
+                    "en-GB": "primary",
+                    "de-DE": "primär"
+                },
+                "type": "color",
+                "value": "#131313",
+                "editable": true,
+                "block": "BcWlProduct",
+                "order": 100
+            },
+            "bc-wl-product-secondary": {
+                "label": {
+                    "en-GB": "secondary",
+                    "de-DE": "sekundär"
+                },
+                "type": "color",
+                "value": "#82ae46",
+                "editable": true,
+                "block": "BcWlProduct",
+                "order": 200
+            },
+			"bc-wl-product-primary-text-color": {
+                "label": {
+                    "en-GB": "Primary Text Color",
+                    "de-DE": "Primäre Textfarbe"
+                },
+                "type": "color",
+                "value": "#131313",
+                "editable": true,
+                "block": "BcWlProduct",
+                "order": 300
+            },
+            "bc-wl-product-secondary-text-color": {
+                "label": {
+                    "en-GB": "Secondary Text Color",
+                    "de-DE": "Sekundäre Textfarbe"
+                },
+                "type": "color",
+                "value": "#FFFFFF",
+                "editable": true,
+                "block": "BcWlProduct",
+                "order": 400
+            },
+            "bc-wl-product-background-color": {
+                "label": {
+                    "en-GB": "Background Color",
+                    "de-DE": "Hintergrundfarbe"
+                },
+                "type": "color",
+                "value": "#FFFFFF",
+                "editable": true,
+                "block": "BcWlProduct",
+                "order": 500
+            },
+		   "bc-wl-promotion-popup-img1": {
+                "label": {
+                    "en-GB": "Product Promotion Popup Image1",
+                    "de-DE": "Produktwerbung Popup-Image1"
+                },
+                "type": "media",
+                "value": "public/storefront/img/bc_wl_promotion_img1.jpg",
+                "editable": true,
+                "block": "BcWlGeneral",
+                "order": 100
+           },
+		   "bc-wl-promotion-popup-img2": {
+                "label": {
+                    "en-GB": "Product Promotion Popup Image2",
+                    "de-DE": "Produktwerbung Popup-Image2"
+                },
+                "type": "media",
+                "value": "public/storefront/img/bc_wl_promotion_img2.jpg",
+                "editable": true,
+                "block": "BcWlGeneral",
+                "order": 200
+           },
+		   "bc-wl-promotion-popup-img3": {
+                "label": {
+                    "en-GB": "Product Promotion Popup Image3",
+                    "de-DE": "Produktwerbung Popup-Image3"
+                },
+                "type": "media",
+                "value": "public/storefront/img/bc_wl_promotion_img3.jpg",
+                "editable": true,
+                "block": "BcWlGeneral",
+                "order": 300
+           },
+		   "bc-wl-promotion-popup-img4": {
+                "label": {
+                    "en-GB": "Product Promotion Popup Image4",
+                    "de-DE": "Produktwerbung Popup-Image4"
+                },
+                "type": "media",
+                "value": "public/storefront/img/bc_wl_promotion_img4.jpg",
+                "editable": true,
+                "block": "BcWlGeneral",
+                "order": 400
+           },
+		   "bc-wl-ad-reveal-popup-img": {
+                "label": {
+                    "en-GB": "Ad Reveal popup image",
+                    "de-DE": "Popup-Bild für Anzeige aufdecken"
+                },
+                "type": "media",
+                "value": "public/storefront/img/bc_wl_order_now.jpg",
+                "editable": true,
+                "block": "BcWlGeneral",
+                "order": 500
+           },
+           "bc-wl-app-platform-icon1": {
+                "label": {
+                    "en-GB": "App platform icon one",
+                    "de-DE": "App-Plattform-Symbol eins"
+                },
+                "type": "media",
+                "value": "public/storefront/img/bc_wl_app_store.png",
+                "editable": true,
+                "block": "BcWlFooter",
+                "order": 100
+           },
+           "bc-wl-app-platform-icon2": {
+                "label": {
+                    "en-GB": "App platform icon two",
+                    "de-DE": "App-Plattform-Symbol zwei"
+                },
+                "type": "media",
+                "value": "public/storefront/img/bc_wl_google_play.png",
+                "editable": true,
+                "block": "BcWlFooter",
+                "order": 200
+           },
+           "bc-wl-footer-brand-primary": {
+                "label": {
+                    "en-GB": "Primary colour",
+                    "de-DE": "Primärfarbe"
+                },
+                "type": "color",
+                "value": "#131313",
+                "editable": true,
+                "block": "BcWlFooter",
+                "order": 300
+           },
+           "bc-wl-footer-brand-secondary": {
+                "label": {
+                    "en-GB": "Secondary colour",
+                    "de-DE": "Sekundäre Farbe"
+                },
+                "type": "color",
+                "value": "#FFFFFF",
+                "editable": true,
+                "block": "BcWlFooter",
+                "order": 400
+           },
+           "bc-wl-footer-border-color": {
+                "label": {
+                    "en-GB": "Border",
+                    "de-DE": "Grenze"
+                },
+                "type": "color",
+                "value": "#bcc1c7",
+                "editable": true,
+                "block": "BcWlFooter",
+                "order": 500
+           },
+   
+           "bc-wl-footer-text-color": {
+                "label": {
+                    "en-GB": "Text Color",
+                    "de-DE": "Textfarbe"
+                },
+                "type": "color",
+                "value": "#ffffff",
+                "editable": true,
+                "block": "BcWlFooter",
+                "order": 600
+           }
+          
+		}
+	}
+}

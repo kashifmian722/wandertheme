@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Header</title>
+        <title lang="de-DE">Kopfzeile</title>
+        
+        <input-field type="bool">
+            <name>bcwlfixnav</name>
+            <label>Enable Fix Navigation</label>
+            <label lang="de-DE">Fix-Navigation aktivieren</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+		<input-field type="bool">
+            <name>bcwlpromotiontopbar</name>
+            <label>Enable Promotion Topbar</label>
+            <label lang="de-DE">Werbe-Topbar aktivieren</label>
+            <helpText>Edit the Promotion Topbar texts in the snippets of Shopware 6. Go to Settings > Snippets and search for "bc-wl"</helpText>
+            <helpText lang="de-DE">Bearbeiten Sie die Texte der Promotion Topbar in den Snippets von Shopware 6. Gehen Sie zu Einstellungen > Snippets und suchen Sie nach "bc-wl"</helpText>
+            <defaultValue>true</defaultValue>
+        </input-field>
+    </card>
+	<card>
+        <title>Home Page</title>
+        <title lang="de-DE">Kopfzeile</title>
+        
+        <input-field type="bool">
+            <name>bcwlbanneroverlay</name>
+            <label>Enable Banner Overlay</label>
+            <label lang="de-DE">Banner-Overlay aktivieren</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+        <input-field type="single-select">
+			<name>bcwlbanneroverlaybrightness</name>
+            <label>Select Banner Overlay Brightness</label>
+            <label lang="de-DE">Helligkeit des Banner-Overlays auswählen</label>
+			<options>
+				<option>
+					<id>0.1</id>
+					<name>0.1</name>
+					<name lang="de-DE">0.1</name>
+				</option>
+				<option>
+					<id>0.2</id>
+					<name>0.2</name>
+					<name lang="de-DE">0.2</name>
+				</option>
+				<option>
+					<id>0.3</id>
+					<name>0.3</name>
+					<name lang="de-DE">0.3</name>
+				</option>
+				<option>
+					<id>0.4</id>
+					<name>0.4</name>
+					<name lang="de-DE">0.4</name>
+				</option>
+				<option>
+					<id>0.5</id>
+					<name>0.5</name>
+					<name lang="de-DE">0.5</name>
+				</option>
+				<option>
+					<id>0.6</id>
+					<name>0.6</name>
+					<name lang="de-DE">0.6</name>
+				</option>
+				<option>
+					<id>0.7</id>
+					<name>0.7</name>
+					<name lang="de-DE">0.7</name>
+				</option>
+				<option>
+					<id>0.8</id>
+					<name>0.8</name>
+					<name lang="de-DE">0.8</name>
+				</option>
+				<option>
+					<id>0.9</id>
+					<name>0.9</name>
+					<name lang="de-DE">0.9</name>
+				</option>
+				<option>
+					<id>1</id>
+					<name>1</name>
+					<name lang="de-DE">1</name>
+				</option>
+			</options>
+			<defaultValue>0.5</defaultValue>
+		</input-field>
+    </card>
+	<card>
+        <title>General Settings</title>
+        <title lang="de-DE">Allgemeine Einstellungen</title>
+        
+		<input-field type="bool">
+            <name>bcwlpageloader</name>
+            <label>Enable Loader</label>
+            <label lang="de-DE">Loader aktivieren</label>
+            <helpText>You can also change the loader background color in "Theme Configuration"</helpText>
+            <helpText lang="de-DE">Sie können auch die Hintergrundfarbe des Laders unter "Theme Configuration" ändern</helpText>
+            <defaultValue>true</defaultValue>
+        </input-field>
+		<input-field type="bool">
+            <name>bcwladreveal</name>
+            <label>Enable Ad-Reveal</label>
+            <label lang="de-DE">Anzeigen-Offenlegung aktivieren</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+		<input-field type="int">
+            <name>bcwladrevealtimer</name>
+            <label>Ad Reveal popup display timer</label>
+            <label lang="de-DE">Timer für Popup-Anzeigen von Ad Reveal</label>
+            <placeholder>Enter your time ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihre Zeit ein ...</placeholder>
+            <helpText>Enter the timing in milliseconds (> than 1000 ms)</helpText>
+            <helpText lang="de-DE">Geben Sie die Zeit in Millisekunden ein (> als 1000 ms)</helpText>
+            <defaultValue>10000</defaultValue>
+        </input-field>
+		<input-field type="bool">
+            <name>bcwlenablepromotionpopup</name>
+            <label>Enable Product Promotion Popup</label>
+            <label lang="de-DE">Popup für Produktwerbung aktivieren</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+		<input-field type="int">
+            <name>bcwlpromotionpopuptimer</name>
+            <label>Promotion popup display timer</label>
+            <label lang="de-DE">Werbe-Popup-Anzeige-Timer</label>
+            <placeholder>Enter your time ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihre Zeit ein ...</placeholder>
+            <helpText>Enter the timing in milliseconds (> than 1000 ms)</helpText>
+            <helpText lang="de-DE">Geben Sie die Zeit in Millisekunden ein (> als 1000 ms)</helpText>
+            <defaultValue>10000</defaultValue>
+        </input-field>
+		<input-field>
+            <name>bcwlpromotionproduct1heading</name>
+            <label>Product 1 Title</label>
+            <label lang="de-DE">Produkt 1 Titel</label>
+            <placeholder>Enter your text ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihren Text ein ...</placeholder>
+            <defaultValue>Title 1</defaultValue>
+        </input-field>
+		<input-field>
+            <name>bcwlpromotionproduct1content</name>
+            <label>Product 1 Description</label>
+            <label lang="de-DE">Produkt 1 Beschreibung</label>
+            <placeholder>Enter your text ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihren Text ein ...</placeholder>
+            <defaultValue>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</defaultValue>
+        </input-field>
+		<input-field>
+            <name>bcwlpromotionurl1</name>
+            <label>Promotion Product Url 1</label>
+            <label lang="de-DE">Werbung Produkt Url 1</label>
+            <placeholder>Enter your url ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihre Url ein ...</placeholder>
+            <defaultValue>#</defaultValue>
+        </input-field>
+		<input-field>
+            <name>bcwlpromotionproduct2heading</name>
+            <label>Product 2 Title</label>
+            <label lang="de-DE">Produkt 2 Titel</label>
+            <placeholder>Enter your text ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihren Text ein ...</placeholder>
+            <defaultValue>Title 2</defaultValue>
+        </input-field>
+		<input-field>
+            <name>bcwlpromotionproduct2content</name>
+            <label>Product 2 Description</label>
+            <label lang="de-DE">Produkt 2 Beschreibung</label>
+            <placeholder>Enter your text ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihren Text ein ...</placeholder>
+            <defaultValue>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</defaultValue>
+        </input-field>
+		<input-field>
+            <name>bcwlpromotionurl2</name>
+            <label>Promotion Product Url 2</label>
+            <label lang="de-DE">Werbung Produkt Url 2</label>
+            <placeholder>Enter your url ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihre Url ein ...</placeholder>
+            <defaultValue>#</defaultValue>
+        </input-field>
+		<input-field>
+            <name>bcwlpromotionproduct3heading</name>
+            <label>Product 3 Title</label>
+            <label lang="de-DE">Produkt 3 Titel</label>
+            <placeholder>Enter your text ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihren Text ein ...</placeholder>
+            <defaultValue>Title 3</defaultValue>
+        </input-field>
+		<input-field>
+            <name>bcwlpromotionproduct3content</name>
+            <label>Product 3 Description</label>
+            <label lang="de-DE">Produkt 3 Beschreibung</label>
+            <placeholder>Enter your text ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihren Text ein ...</placeholder>
+            <defaultValue>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</defaultValue>
+        </input-field>
+		<input-field>
+            <name>bcwlpromotionurl3</name>
+            <label>Promotion Product Url 3</label>
+            <label lang="de-DE">Werbung Produkt Url 3</label>
+            <placeholder>Enter your url ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihre Url ein ...</placeholder>
+            <defaultValue>#</defaultValue>
+        </input-field>
+		<input-field>
+            <name>bcwlpromotionproduct4heading</name>
+            <label>Product 4 Title</label>
+            <label lang="de-DE">Produkt 4 Titel</label>
+            <placeholder>Enter your text ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihren Text ein ...</placeholder>
+            <defaultValue>Title 4</defaultValue>
+        </input-field>
+		<input-field>
+            <name>bcwlpromotionproduct4content</name>
+            <label>Product 4 Description</label>
+            <label lang="de-DE">Produkt 4 Beschreibung</label>
+            <placeholder>Enter your text ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihren Text ein ...</placeholder>
+            <defaultValue>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</defaultValue>
+        </input-field>
+		<input-field>
+            <name>bcwlpromotionurl4</name>
+            <label>Promotion Product Url 4</label>
+            <label lang="de-DE">Werbung Produkt Url 4</label>
+            <placeholder>Enter your url ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihre Url ein ...</placeholder>
+            <defaultValue>#</defaultValue>
+        </input-field>
+    </card>
+	<card>
+        <title>Social Media Share Link (Product Detail)</title>
+        <title lang="de-DE">Social Media Share Link (Produktdetail)</title>
+        
+		<input-field type="bool">
+            <name>bcwlenableshareicon</name>
+            <label>Enable Share Icon</label>
+            <label lang="de-DE">Freigabesymbol aktivieren</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>bcwlenablefacebookicon</name>
+            <label>Enable Facebook</label>
+            <label lang="de-DE">Facebook aktivieren</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>bcwlenabletwittericon</name>
+            <label>Enable Twitter</label>
+            <label lang="de-DE">Twitter aktivieren</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>bcwlenablewhatsappicon</name>
+            <label>Enable WhatsApp</label>
+            <label lang="de-DE">WhatsApp aktivieren</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+	</card>
+	<card>
+        <title>Footer</title>
+        <title lang="de-DE">Fußzeile</title>
+        
+		<input-field type="bool">
+            <name>bcwlenablestoremap</name>
+            <label>Enable Store Map</label>
+            <label lang="de-DE">Store Map aktivieren</label>
+            <defaultValue>true</defaultValue>
+        </input-field>        
+		<input-field>
+            <name>bcwlstoreurl</name>
+            <label>Store Map Url</label>
+            <label lang="de-DE">Store Map Url</label>
+            <placeholder>Enter physical url ...</placeholder>
+            <placeholder lang="de-DE">Physische Url eingeben ...</placeholder>
+            <defaultValue>#</defaultValue>
+        </input-field>
+		<input-field type="bool">
+            <name>bcwlenableappicon1</name>
+            <label>Enable App store icon 1</label>
+            <label lang="de-DE">App Store-Symbol aktivieren 1</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+		<input-field>
+            <name>bcwlappurl1</name>
+            <label>App Store Url1</label>
+            <label lang="de-DE">App Store Url1</label>
+            <placeholder>Enter your url ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihre Url ein ...</placeholder>
+            <defaultValue>#</defaultValue>
+        </input-field>
+		<input-field type="bool">
+            <name>bcwlenableappicon2</name>
+            <label>Enable App store icon 2</label>
+            <label lang="de-DE">App Store-Symbol aktivieren 2</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+		<input-field>
+            <name>bcwlappurl2</name>
+            <label>App Store Url2</label>
+            <label lang="de-DE">App Store Url2</label>
+            <placeholder>Enter your url ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihre Url ein ...</placeholder>
+            <defaultValue>#</defaultValue>
+        </input-field>
+		<input-field type="bool">
+            <name>bcwlenablenewsletter</name>
+            <label>Enable newsletter</label>
+            <label lang="de-DE">Newsletter aktivieren</label>
+            <defaultValue>false</defaultValue>
+        </input-field> 
+    </card>
+	<card>
+        <title>Footer Social Media Link</title>
+        <title lang="de-DE">Social Media Link zur Fußzeile</title>
+        
+		<input-field type="bool">
+            <name>bcwlenablefootersocialicon</name>
+            <label>Enable Social icon</label>
+            <label lang="de-DE">Soziales Symbol aktivieren</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>bcwlenablefacebook</name>
+            <label>Enable Facebook</label>
+            <label lang="de-DE">Facebook aktivieren</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+		<input-field>
+            <name>bcwlenablefacebookurl</name>
+            <label>Facebook Url</label>
+            <label lang="de-DE">Facebook Url</label>
+            <placeholder>Enter your url ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihre Url ein ...</placeholder>
+            <defaultValue>#</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>bcwlenabletwitter</name>
+            <label>Enable Twitter</label>
+            <label lang="de-DE">Twitter aktivieren</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+		<input-field>
+            <name>bcwlenabletwitterurl</name>
+            <label>Twitter Url</label>
+            <label lang="de-DE">Twitter Url</label>
+            <placeholder>Enter your url ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihre Url ein ...</placeholder>
+            <defaultValue>#</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>bcwlenableinstagram</name>
+            <label>Enable Instagram</label>
+            <label lang="de-DE">Instagram aktivieren</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+		<input-field>
+            <name>bcwlenableinstagramurl</name>
+            <label>Instagram Url</label>
+            <label lang="de-DE">Instagram Url</label>
+            <placeholder>Enter your url ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihre Url ein ...</placeholder>
+            <defaultValue>#</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>bcwlenableyoutube</name>
+            <label>Enable Youtube</label>
+            <label lang="de-DE">Youtube aktivieren</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+		<input-field>
+            <name>bcwlenableyoutubeurl</name>
+            <label>Youtube Url</label>
+            <label lang="de-DE">Youtube Url</label>
+            <placeholder>Enter your url ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihre Url ein ...</placeholder>
+            <defaultValue>#</defaultValue>
+        </input-field>  
+		<input-field type="bool">
+            <name>bcwlenablexing</name>
+            <label>Enable Xing</label>
+            <label lang="de-DE">Xing aktivieren</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+		<input-field>
+            <name>bcwlenablexingeurl</name>
+            <label>Xing Url</label>
+            <label lang="de-DE">Xing Url</label>
+            <placeholder>Enter your url ...</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihre Url ein ...</placeholder>
+            <defaultValue>#</defaultValue>
+        </input-field>       
+	</card>
+</config>

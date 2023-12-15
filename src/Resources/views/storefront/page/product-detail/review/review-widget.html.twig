@@ -1,0 +1,19 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/review/review-widget.html.twig' %}
+
+{% block page_product_detail_review_filter_checkbox %}
+	<div class="col-md-12 col-lg-12 product-detail-review-checkbox">
+		<div class="custom-control custom-checkbox">
+			{% block page_product_detail_review_filter_checkbox_input %}
+				{{ parent() }}
+			{% endblock %}
+			{% block page_product_detail_review_filter_checkbox_label %}
+				{{ parent() }}
+			{% endblock %}
+		</div>
+	</div>
+{% endblock %}
+{% block page_product_detail_review_filter_share %}
+	<div class="col-12 col-md-4 product-detail-review-share">
+		<p><small>{{ matrix.percent|round }}%</small></p>
+	</div>
+{% endblock %}

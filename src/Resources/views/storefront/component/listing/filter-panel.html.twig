@@ -1,0 +1,18 @@
+{% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
+
+{% block component_filter_panel_element %}
+	{% if not sidebar %}
+		{% if listing.total != 0 %}
+			<div class="col-lg-2 bc_d_xs_none bc_d_sm_block">
+				<button class="btn bc_wl_filter_btn bc_filter_custom_btn" type="button" id="bc_wl_horizontal_btn" aria-label="{{ "bc-wl-cms-section-slider-block.filterSliderTitle" | trans }}">
+					{{ "bc-wl-cms-section-slider-block.filterSliderTitle" | trans }} {% sw_icon 'sliders' %}
+				</button>
+			 </div>
+			 <div id="bc_wl_horizontal_filter">
+				{{ parent() }}
+			</div>
+		{% endif %}
+	{% else %}
+		{{ parent() }}
+	{% endif %}
+{% endblock %}

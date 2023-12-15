@@ -1,0 +1,47 @@
+{
+    "name": "bc/brand-crock-wanderlust",
+    "description": "Wanderlust | Premium Responsive Theme",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.0",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "BrandCrock GmbH",
+            "homepage": "https://www.brandcrock.com/",
+            "email": "info@brandcrock.com",
+            "role": "Owner"
+        }
+    ],
+	"support": {
+        "email": "support@brandcrock.com"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bc\\BrandCrockWanderlust\\": "src/"
+        }
+    },
+    "require": {
+        "shopware/core": "6.3.* || 6.4.*"
+    },
+    "extra": {
+        "shopware-plugin-class": "Bc\\BrandCrockWanderlust\\BrandCrockWanderlust",
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "copyright": "(c) BrandCrock GmbH",
+        "label": {
+            "de-DE": "Wanderlust - Thema",
+            "en-GB": "Wanderlust - Theme"
+        },
+		"description": {
+            "de-DE": "Ein Thema, das für Shopware 6 in Übereinstimmung mit einer modernen, mobilfreundlichen Philosophie entworfen wurde.",
+			"en-GB": "A theme designed for Shopware 6 in accordance with a modern, mobile-friendly philosophy."
+		},
+        "manufacturerLink": {
+            "de-DE": "https://www.brandcrock.com/de/",
+            "en-GB": "https://www.brandcrock.com/"
+        },
+        "supportLink": {
+            "de-DE": "https://www.brandcrock.com/de/kontakt-uns/",
+            "en-GB": "https://www.brandcrock.com/contact-us/"
+        }
+    }
+}

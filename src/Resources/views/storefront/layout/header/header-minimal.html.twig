@@ -1,0 +1,13 @@
+{% sw_extends '@Storefront/storefront/layout/header/header-minimal.html.twig' %}
+
+{% set bcPluginSettings = context.saleschannel.id|getWlPluginConfig %}
+{% set bcThemeSettings = context.saleschannel.id|getWlThemeSettings %}
+
+{% block layout_header %}
+	{% if bcPluginSettings['bcwlpageloader'] and bcThemeSettings['bc-wl-loader-img']['value'] is not null %}
+		<div id="preloader">	
+			<div class="loaderImage" style="background-image: url({{ searchMedia([bcThemeSettings['bc-wl-loader-img']['value']], context.context).get(bcThemeSettings['bc-wl-loader-img']['value']).url |sw_encode_url }})"></div>
+		</div>
+	{% endif %}
+	{{ parent() }}
+{% endblock %}

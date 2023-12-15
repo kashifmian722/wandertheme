@@ -1,0 +1,158 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% set bcPluginSettings = context.saleschannel.id|getWlPluginConfig %}
+{% set bcThemeSettings = context.saleschannel.id|getWlThemeSettings %}
+
+{% block base_header %}
+	<input type="hidden" id="bcwl_banner_overlay" value="{{ bcPluginSettings['bcwlbanneroverlay'] }}">
+	<input type="hidden" id="bcwl_banner_overlay_brightness" value="{{ bcPluginSettings['bcwlbanneroverlaybrightness'] }}">
+	{% if bcPluginSettings['bcwlpageloader'] and bcThemeSettings['bc-wl-loader-img']['value'] is not null and bcThemeSettings['bc-wl-loader-img']['value'] is not empty %}
+		<div id="preloader">	
+			<div class="loaderImage" style="background-image: url({{ searchMedia([bcThemeSettings['bc-wl-loader-img']['value']], context.context).get(bcThemeSettings['bc-wl-loader-img']['value']).url |sw_encode_url }})"></div>
+		</div>
+	{% endif %}
+	<input type="hidden" id="fixed_nav" value="{{ bcPluginSettings['bcwlfixnav'] }}">
+	<header class="header-main">
+		{% block base_header_inner %}
+			<div class="container-fluid bc-wl-navigation">
+				{% sw_include '@Storefront/storefront/layout/header/header.html.twig' %}
+				<div class="bc-wl-search">
+					<div class="container">
+						{% sw_include '@Storefront/storefront/layout/header/search.html.twig' %}
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+	</header>
+{% endblock %}
+{% block base_navigation %}{% endblock %}
+{% block base_main_inner %}
+	<div class="container-fluid bc-wl-main-container">
+		{% block base_main_container %}
+			{{ parent() }}
+		{% endblock %}
+	</div>
+{% endblock %}
+{% block base_footer %}
+	<footer class="footer-main">
+		{% block base_footer_inner %}
+			<div class="container-fluid">
+				{% sw_include '@Storefront/storefront/layout/footer/footer.html.twig' %}
+			</div>
+		{% endblock %}
+	</footer>
+	<input type="hidden" id="readMoreTitle" value="{{ "bc-wl-alt-text.readMoreTitle" | trans }}">
+    {% if  bcPluginSettings['bcwlenablepromotionpopup'] %}
+		<input type="hidden" id="bcPromotionPopup" value="{{ bcPluginSettings['bcwlpromotionpopuptimer'] }}">
+		<div class="product_promotion_block">
+			{% if bcThemeSettings['bc-wl-promotion-popup-img1']['value'] is not null and bcThemeSettings['bc-wl-promotion-popup-img1']['value'] is not empty and (bcPluginSettings['bcwlpromotionproduct1heading'] is not empty or bcPluginSettings['bcwlpromotionproduct1content'] is not empty) %}
+				<div class="card col-lg-5 col-md-7 col-sm-8 col product_promotion_popup" data-popupid="1">
+					<div class="card-body">
+						<button type="button" class="close popup_close_btn" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+						<div class="row card_body_inner">
+							<div class="product-img-block">
+								{% if bcPluginSettings['bcwlpromotionurl1'] %}<a href="{{ bcPluginSettings['bcwlpromotionurl1'] }}" rel="noopener" target="_blank" title="{{ bcPluginSettings['bcwlpromotionproduct1heading'] }}">{% endif %}
+								<img src="{{ searchMedia([bcThemeSettings['bc-wl-promotion-popup-img1']['value']], context.context).get(bcThemeSettings['bc-wl-promotion-popup-img1']['value']).url |sw_encode_url }}" alt="{{ bcPluginSettings['bcwlpromotionproduct1heading'] }}"/>
+								{% if bcPluginSettings['bcwlpromotionurl1'] %}</a>{% endif %}
+							</div>
+							<div class="col product-detail-block">
+								<span class="h5 product-heading">{{ bcPluginSettings['bcwlpromotionproduct1heading'] }}</span>
+								<p class="product-desc"> {{ bcPluginSettings['bcwlpromotionproduct1content'] |striptags }} </p>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+			{% if bcThemeSettings['bc-wl-promotion-popup-img2']['value'] is not null and bcThemeSettings['bc-wl-promotion-popup-img2']['value'] is not empty and (bcPluginSettings['bcwlpromotionproduct2heading'] is not empty or bcPluginSettings['bcwlpromotionproduct2content'] is not empty) %}
+				<div class="card col-lg-5 col-md-7 col-sm-8 col product_promotion_popup" data-popupid="2">
+					<div class="card-body">
+						<button type="button" class="close popup_close_btn" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+						<div class="row card_body_inner">
+							<div class="product-img-block">
+								{% if bcPluginSettings['bcwlpromotionurl2'] %}<a href="{{ bcPluginSettings['bcwlpromotionurl2'] }}" rel="noopener" target="_blank" title="{{ bcPluginSettings['bcwlpromotionproduct2heading'] }}">{% endif %}
+								<img src="{{ searchMedia([bcThemeSettings['bc-wl-promotion-popup-img2']['value']], context.context).get(bcThemeSettings['bc-wl-promotion-popup-img2']['value']).url |sw_encode_url }}" alt="{{ bcPluginSettings['bcwlpromotionproduct2heading'] }}"/>
+								{% if bcPluginSettings['bcwlpromotionurl2'] %}</a>{% endif %}
+							</div>
+							<div class="col product-detail-block">
+								<span class="h5 product-heading">{{ bcPluginSettings['bcwlpromotionproduct2heading'] }}</span>
+								<p class="product-desc">{{ bcPluginSettings['bcwlpromotionproduct2content'] |striptags }} </p>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+			{% if bcThemeSettings['bc-wl-promotion-popup-img3']['value'] is not null and bcThemeSettings['bc-wl-promotion-popup-img3']['value'] is not empty and (bcPluginSettings['bcwlpromotionproduct3heading'] is not empty or bcPluginSettings['bcwlpromotionproduct3content'] is not empty) %}
+				<div class="card col-lg-5 col-md-7 col-sm-8 col product_promotion_popup" data-popupid="3">
+					<div class="card-body">
+						<button type="button" class="close popup_close_btn" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+						<div class="row card_body_inner">
+							<div class="product-img-block">
+								{% if bcPluginSettings['bcwlpromotionurl3'] %}<a href="{{ bcPluginSettings['bcwlpromotionurl3'] }}" rel="noopener" target="_blank" title="{{ bcPluginSettings['bcwlpromotionproduct3heading'] }}">{% endif %}
+								<img src="{{ searchMedia([bcThemeSettings['bc-wl-promotion-popup-img3']['value']], context.context).get(bcThemeSettings['bc-wl-promotion-popup-img3']['value']).url |sw_encode_url }}" alt="{{ bcPluginSettings['bcwlpromotionproduct3heading'] }}"/>
+								{% if bcPluginSettings['bcwlpromotionurl3'] %}</a>{% endif %}
+							</div>
+							<div class="col product-detail-block">
+								<span class="h5 product-heading">{{ bcPluginSettings['bcwlpromotionproduct3heading'] }}</span>
+								<p class="product-desc">{{ bcPluginSettings['bcwlpromotionproduct3content'] |striptags }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+			{% if bcThemeSettings['bc-wl-promotion-popup-img4']['value'] is not null and bcThemeSettings['bc-wl-promotion-popup-img4']['value'] is not empty and (bcPluginSettings['bcwlpromotionproduct4heading'] is not empty or bcPluginSettings['bcwlpromotionproduct4content'] is not empty) %}
+				<div class="card col-lg-5 col-md-7 col-sm-8 col product_promotion_popup" data-popupid="4">
+					<div class="card-body">
+						<button type="button" class="close popup_close_btn" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+						<div class="row card_body_inner">
+							<div class="product-img-block">
+								{% if bcPluginSettings['bcwlpromotionurl4'] %}<a href="{{ bcPluginSettings['bcwlpromotionurl4'] }}" rel="noopener" target="_blank" title="{{ bcPluginSettings['bcwlpromotionproduct4heading'] }}">{% endif %}
+								<img src="{{ searchMedia([bcThemeSettings['bc-wl-promotion-popup-img4']['value']], context.context).get(bcThemeSettings['bc-wl-promotion-popup-img4']['value']).url |sw_encode_url }}" alt="{{ bcPluginSettings['bcwlpromotionproduct4heading'] }}"/>
+								{% if bcPluginSettings['bcwlpromotionurl4'] %}</a>{% endif %}
+							</div>
+							<div class="col product-detail-block">
+								<span class="h5 product-heading">{{ bcPluginSettings['bcwlpromotionproduct4heading'] }}</span>
+								<p class="product-desc">{{ bcPluginSettings['bcwlpromotionproduct4content'] |striptags }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+		</div>
+	{% endif %}
+	<input type="hidden" id="isReveal" value="{{ bcPluginSettings['bcwladreveal'] }}">
+	<input type="hidden" id="revealtimer" value="{{ bcPluginSettings['bcwladrevealtimer'] }}">
+	{% if  bcPluginSettings['bcwladreveal'] and bcThemeSettings['bc-wl-ad-reveal-popup-img']['value'] is not null and bcThemeSettings['bc-wl-ad-reveal-popup-img']['value'] is not empty %}
+		<div class="modal fade bd-example-modal-lg bc-wl-reveal-popup" id="reveal_popup" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body bc-wl-reveal-popup-body">
+						<button type="button" class="close close-button" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+						<div class="row">
+							<div class="col-md-12 right_side_block">
+								<img src="{{ searchMedia([bcThemeSettings['bc-wl-ad-reveal-popup-img']['value']], context.context).get(bcThemeSettings['bc-wl-ad-reveal-popup-img']['value']).url |sw_encode_url }}" class="reveal-img-content" alt="Reveal Image">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}
+{% block base_script_router %}
+    {{ parent() }}
+    <script>
+        window.router['wanderlust.set.promotionpopup'] = "{{ path('wanderlust.set.promotionpopup') }}"
+        window.router['wanderlust.set.popup'] = "{{ path('wanderlust.set.popup') }}"
+        window.router['wanderlust.get.wlsession'] = "{{ path('wanderlust.get.wlsession') }}"
+    </script>
+{%  endblock %}

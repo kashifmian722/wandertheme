@@ -1,0 +1,493 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_header %}
+    <header class="header-main">
+        {% block base_header_inner %}
+            <div class="container">
+                {% sw_include '@Storefront/storefront/layout/header/header.html.twig' %}
+            </div>
+        {% endblock %}
+
+        {% if context.salesChannel.extensions.organization.disclaimer.active %}
+            <div class="container">
+                <div class="alert alert-success disclaimer">
+                    <strong>{{ context.salesChannel.extensions.organization.disclaimer.text }}</strong>
+                </div>
+            </div>
+        {% endif %}
+    </header>
+{% endblock %}
+
+{% block base_main_inner %}
+    <div class="row fullsize{% if not page.merchant.publicDescription %} no-description{% endif %}" id="merchant-header-banner">
+
+        {% if page.merchant.cover is not defined %}
+        <div class="container">
+        {% endif %}
+
+        {# Image #}
+        {% if page.merchant.cover %}
+          
+    <style>
+        .merchant-image img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+        .rating {
+          display: inline-flex; /* Use inline-flex to align items in a row */
+            flex-direction: row-reverse; /* Reverse the order of star elements */
+        }
+
+        .rating input {
+          display: none;
+        }
+
+        .rating label {
+          cursor: pointer;
+          width: 30px;
+          height: 30px;
+          background-image: url('https://orkiya1.b-cdn.net/media/66/c0/37/1691871429/star-illustrations-single-star-free-png (1).png'); /* Use your star icon image path */
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+
+        .rating input:checked ~ label {
+          background-image: url('https://orkiya1.b-cdn.net/media/b7/37/f3/1691870905/star-illustrations-single-star-free-png.png'); /* Use your filled star icon image path */
+        }
+        :root {
+          --star-size: 60px;
+          --star-color: #adacac;
+          --star-background: #fc0;
+        }
+
+        .Stars {
+          --percent: calc(var(--rating) / 5 * 100%);
+          
+          display: inline-block;
+          font-size: var(--star-size);
+          line-height: 1;
+          
+          &::before {
+            content: '★★★★★';
+            letter-spacing: 3px;
+            background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+        }
+
+    </style>
+
+<div class="col-12 col-md-12 col-lg-12 merchant-image">
+    <div class="merchant-image-container">
+        {% sw_thumbnails 'merchant-thumbnails' with {
+            media: page.merchant.cover,
+            sizes: {
+                'default': '1920px'
+            },
+            attributes: {
+                'class': 'img-fluid',
+                'alt': page.merchant.publicCompanyName,
+                'title': page.merchant.publicCompanyName,
+                'data-object-fit': 'cover'
+            }
+        } %}
+    </div>
+</div>
+
+        {% endif %}
+
+        {% if page.merchant.cover is not defined %}
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="row fullsize merchant-information">
+        <div class="col-md-6 col-lg-6">
+            {% block component_merchant_availability %}
+                <div class="col-12">
+                    {% sw_include 'storefront/component/merchant/availability-badge.html.twig' with {'availability': page.merchant.availability, 'availabilityText': page.merchant.availabilityText} %}
+                </div>
+            {% endblock %}
+              
+            {# Intro #}
+            <div class="col-12">
+                <h1>{{ page.merchant.publicCompanyName }}</h1>
+{% set numberOfStars = merchantRating|default(0) %}
+{% set averageRating = page.merchant.customFields.rating|default(0) %}
+
+<div class="Stars" style="--rating: {{ averageRating }};" aria-label="Rating of this product is {{ averageRating }} out of 5."></div>
+<span class="AverageRating" style="font-size: 30px;">({{ '%.1f'|format(averageRating) }})</span> <!-- Display average rating with one decimal -->
+<br>
+<button class="btn btn-primary" id="rate-btn" onclick="rateMerchant()">Rate Merchant</button>
+
+<div style="display: none;" id="rating-form">
+   <div class="rating" >
+      <input type="radio" id="star5" name="rating" value="5">
+      <label for="star5"></label>
+      <input type="radio" id="star4" name="rating" value="4">
+      <label for="star4"></label>
+      <input type="radio" id="star3" name="rating" value="3">
+      <label for="star3"></label>
+      <input type="radio" id="star2" name="rating" value="2">
+      <label for="star2"></label>
+      <input type="radio" id="star1" name="rating" value="1">
+      <label for="star1"></label>
+    </div>
+    <br>
+    <input type="hidden" id="merchantId" value="{{ page.merchant.id }}">
+    <button class="btn btn-primary" onclick="submitRating()">Test Submit</button>
+</div>
+
+<script type="text/javascript">
+    function rateMerchant(){
+        $("#rating-form").show();
+        $("#rate-btn").hide();
+        $(".Stars").hide();
+        $(".AverageRating").hide(); // Hide the average rating when rating form is shown
+    }
+    
+    function submitRating(){
+        const merchantId = $("#merchantId").val();
+
+        const rate = $('input[name="rating"]:checked').val();
+        if (rate) {
+            window.location.href = 'https://orkiya.com/merchant/'+ merchantId +'/rate/' + rate;
+        } else {
+            alert('Please Rate first before submit.');
+        }
+    }
+</script>
+
+                {% if page.merchant.customFields.pinlocation or page.merchant.customFields.whatsapp %}
+                    <div class="col-12 contact-information-content" style="padding-left: 0px;">
+                      
+                      
+                        {% if page.merchant.customFields.whatsapp %}
+                       <!-- Assuming you have the merchant's WhatsApp number stored in the variable 'merchantWhatsappNumber' -->
+<a id="whatsappLink" href="#" rel="noopener" title="Share on WhatsApp">
+  <!-- Add your WhatsApp icon or text here -->
+                                  <img style="margin: 10px;" src="https://www.orkiya.com/media/18/a0/19/1668653168/Group 9250.png?width=3000&height=3000">
+
+
+  <!-- JavaScript code to dynamically set the WhatsApp link -->
+  <script>
+    // Get the current page URL using JavaScript
+    var currentURL = window.location.href;
+
+    // Get the WhatsApp link element by its ID
+    var whatsappLink = document.getElementById("whatsappLink");
+
+    // Define the base WhatsApp API link
+    var baseWhatsAppLink = "https://api.whatsapp.com/send?phone={{ page.merchant.customFields.whatsapp }}&text=Hey%20there%2C%20I%20came%20across%20your%20business%20on%20Orkiya%20and%20I'm%20intrigued%20to%20learn%20more%20about%20your%20retail%20brand.";
+
+    // Append the current page URL to the WhatsApp link href
+    whatsappLink.href = baseWhatsAppLink + encodeURIComponent(" " + currentURL);
+  </script>
+</a>
+
+
+
+                        {% endif %}
+                        {% if page.merchant.customFields.pinlocation %}
+                            <a href="{{ page.merchant.customFields.pinlocation }}" target="blank">
+                                <img style="margin: 10px;" src="https://www.orkiya.com/media/17/3a/9f/1668653169/chalain.png?width=3000&height=3000">
+                            </a>
+                        {% endif %}
+                        <br>
+                    </div>
+                {% endif %}
+                <p>{{ 'merchant.publicOwner'|trans }}: {{ page.merchant.publicOwner }}</p>
+            </div>
+              
+            {% if page.merchant.publicOpeningTimes %}
+                <div class="col-12 opening-times">
+                    <h6>{{ 'merchant.openingTimes'|trans }}</h6>
+                    <p>
+                        {{ page.merchant.publicOpeningTimes|nl2br }}
+                    </p>
+                </div>
+            {% endif %}
+
+            {% if page.merchant.services is not empty %}
+                <div class="col-12">
+                    {% sw_include 'storefront/component/merchant/service-items.html.twig' with {
+                        scope: 'detail',
+                        services: page.merchant.services
+                    } %}
+                </div>
+            {% endif %}
+
+            {# Contact information #}
+            <div class="col-12">
+                <ul class="contact-information" style="list-style-type: none; padding-left: 10px;">
+                    {# Phone #}
+                   {% if page.merchant.publicPhoneNumber %}
+    <li>
+        <span class="icon-holder">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#000000" fill-rule="evenodd" d="M9.417 9.18c.601 1.027 1.425 2.065 2.472 3.113 1.048 1.048 2.086 1.87 3.114 2.472l1.472-1.472a1 1 0 0 1 1.222-.15l5 3a1 1 0 0 1 .343 1.372l-1.876 3.125a4 4 0 0 1-4.609 1.764c-3.266-1.008-6.294-2.911-9.08-5.697a27.94 27.94 0 0 1-6.179-9.31 4 4 0 0 1 2.44-5.302l3.13-1.044a1 1 0 0 1 1.174.435l3 5a1 1 0 0 1-.15 1.221L9.416 9.18zm11.393 8.163l-3.473-2.084-1.448 1.448a1 1 0 0 1-1.154.188c-1.436-.718-2.855-1.782-4.26-3.188-1.405-1.405-2.47-2.824-3.187-4.26a1 1 0 0 1 .187-1.154l1.448-1.448-2.186-3.643-2.368.79a2 2 0 0 0-1.22 2.652 25.94 25.94 0 0 0 5.74 8.649c2.564 2.564 5.314 4.292 8.256 5.2a2 2 0 0 0 2.304-.882l1.361-2.268z"/></svg>
+        </span>
+        <a href="tel:{{ page.merchant.publicPhoneNumber }}" class="contact-information-content phone">{{ page.merchant.publicPhoneNumber }}</a>
+    </li>
+{% endif %}
+
+                    {# Mail #}
+                    {% if page.merchant.publicEmail %}
+                        <li>
+                            <span class="icon-holder">
+                                {% sw_icon 'envelope' %}
+                            </span>
+                            <span class="contact-information-content"><a href="mailto:{{ page.merchant.publicEmail }}">{{ page.merchant.publicEmail }}</a></span>
+                        </li>
+                    {% endif %}
+                    {# Address #}
+                    {% if page.merchant.street %}
+                        <li>
+                            <span class="icon-holder">
+                                {% sw_icon 'marker' %}
+                            </span>
+                            <span class="contact-information-content">
+                                {{ page.merchant.street }}, 
+                                {{ page.merchant.zip }} {{ page.merchant.city }}, 
+                                {{ page.merchant.country.translated.name }}
+                            </span><br>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-6">
+            <ul class="contact-information" style="list-style-type: none; padding-left: 10px;">
+                <li style="padding-top: 30px;">
+                    <span class="contact-information-content">
+                        <a href="https://orkiya.com/merchant/{{ page.merchant.id }}/check-in">
+                            <button class="btn btn-primary">Check-In({{ page.merchant.customFields.checkin }})</button>
+                        </a>
+<p>Share/Recommend:</p><!-- WhatsApp Share -->
+<a href="#" onclick="sendWhatsAppMessage();" rel="noopener" target="_blank" title="Share on WhatsApp">
+<svg width="25" height="25" viewBox="0 0 16 16" fill="green" xmlns="http://www.w3.org/2000/svg">
+  <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" fill="#25D366" />
+</svg>
+
+</a>
+
+<script>
+function sendWhatsAppMessage() {
+  // Get the current page URL
+  var currentPageUrl = window.location.href;
+
+  // Encode the URL to be used in the WhatsApp message
+  var encodedPageUrl = encodeURIComponent(currentPageUrl);
+
+  // Compose the WhatsApp message with the current page URL
+  var whatsappMessage = "Hey there, you've got to check out this amazing retailer - " + encodedPageUrl + "%21%20%F0%9F%9B%8D%EF%B8%8F%F0%9F%91%8C%20Also%2C%20make%20sure%20to%20visit%20their%20physical%20store%20located%20at%20a%20convenient%20location%20near%20you%21%20" + "{{ page.merchant.customFields.pinlocation }}" + "%20%F0%9F%8F%AC%F0%9F%93%8D";
+
+  // Compose the WhatsApp API link with the message
+  var whatsappApiLink = "https://api.whatsapp.com/send?text=" + whatsappMessage;
+
+  // Open the WhatsApp link in a new tab
+  window.open(whatsappApiLink, "_blank");
+}
+</script>
+
+
+<a href="#" onclick="shareOnFacebook();" rel="noopener" title="Share on Facebook">
+  <svg xmlns="http://www.w3.org/2000/svg" height="25px" width="25px" viewBox="0 0 512 512" fill="#385C8E">
+    <path d="M134.941,272.691h56.123v231.051c0,4.562,3.696,8.258,8.258,8.258h95.159
+    c4.562,0,8.258-3.696,8.258-8.258V273.78h64.519c4.195,0,7.725-3.148,8.204-7.315l9.799-85.061c0.269-2.34-0.472-4.684-2.038-6.44
+    c-1.567-1.757-3.81-2.763-6.164-2.763h-74.316V118.88c0-16.073,8.654-24.224,25.726-24.224c2.433,0,48.59,0,48.59,0
+    c4.562,0,8.258-3.698,8.258-8.258V8.319c0-4.562-3.696-8.258-8.258-8.258h-66.965C309.622,0.038,308.573,0,307.027,0
+    c-11.619,0-52.006,2.281-83.909,31.63c-35.348,32.524-30.434,71.465-29.26,78.217v62.352h-58.918c-4.562,0-8.258,3.696-8.258,8.258
+    v83.975C126.683,268.993,130.379,272.691,134.941,272.691z"/>
+  </svg>
+</a>
+
+<script>
+function shareOnFacebook() {
+  var currentPageUrl = window.location.href;
+  var encodedPageUrl = encodeURIComponent(currentPageUrl);
+  var facebookMessage = "Hey there, you've got to check out this amazing retailer - ";
+  var facebookApiLink = "https://www.facebook.com/sharer.php?u=" + encodedPageUrl + "&quote=" + encodeURIComponent(facebookMessage);
+
+  // Try navigating to the Facebook share link
+  window.location.href = facebookApiLink;
+}
+</script>
+
+
+<!-- Twitter Share -->
+<a class="twitter-share-button" href="#" onclick="sendTwitterMessage();" rel="noopener" target="_blank" title="Share on Twitter" aria-label="Share on Twitter">
+  <svg width="25" height="21" viewBox="0 0 25 21" fill="#1DA1F2" xmlns="http://www.w3.org/2000/svg">
+    <path d="M22.4302 5.06025C22.446 5.28232 22.446 5.50444 22.446 5.72651C22.446 12.5 17.2906 20.3045 7.86802 20.3045C4.96509 20.3045 2.26841 19.4638 0 18.0044C0.412451 18.052 0.808984 18.0679 1.2373 18.0679C3.63257 18.0679 5.83755 17.2589 7.59834 15.8788C5.3458 15.8312 3.45811 14.356 2.80771 12.3255C3.125 12.373 3.44224 12.4048 3.77539 12.4048C4.2354 12.4048 4.69546 12.3413 5.12373 12.2303C2.77603 11.7544 1.01519 9.69224 1.01519 7.20176V7.13833C1.69727 7.51904 2.49048 7.75698 3.33115 7.78867C1.95107 6.8686 1.04692 5.29819 1.04692 3.52153C1.04692 2.56978 1.30068 1.69731 1.74487 0.935889C4.26709 4.04502 8.05835 6.07544 12.3096 6.29756C12.2303 5.91685 12.1827 5.52031 12.1827 5.12373C12.1827 2.3001 14.4669 0 17.3064 0C18.7816 0 20.1141 0.618652 21.05 1.61802C22.208 1.39595 23.3184 0.967627 24.302 0.380713C23.9212 1.57046 23.1122 2.56982 22.0494 3.2043C23.0805 3.09331 24.0799 2.80771 24.9999 2.41118C24.3021 3.42637 23.4295 4.33052 22.4302 5.06025V5.06025Z"
+            fill="#1DA1F2" />
+  </svg>
+</a>
+
+<script>
+function sendTwitterMessage() {
+  // Get the current page URL
+  var currentPageUrl = window.location.href;
+
+  // Get the merchant pin location
+  var merchantPinLocation = "{{ page.merchant.customFields.pinlocation }}";
+
+  // Compose the tweet message with the current page URL and merchant pin location
+  var tweetMessage = "Hey there, you've got to check out this amazing retailer - " + currentPageUrl + "! 🛍👌 Also, make sure to visit their physical store located at a convenient location near you! " + merchantPinLocation + " 🏬📍";
+
+  // Compose the Twitter share link with the tweet message
+  var twitterShareLink = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetMessage);
+
+  // Open the Twitter share link in a new tab
+  window.open(twitterShareLink, "_blank");
+}
+</script>
+
+
+
+
+
+       
+                  <br>
+             <div class="row">
+    <div class="col-12">
+        {% if page.merchant.tos %}
+            <div class="row">
+                <div class="col">
+                    <a href="#" class="mr-3" data-toggle="modal" data-target="#merchantTos">{{ 'merchant.tos'|trans }}</a>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if page.merchant.privacy %}
+            <div class="row">
+                <div class="col">
+                    <a href="#" class="mr-3" data-toggle="modal" data-target="#merchantPrivacy">{{ 'merchant.privacy'|trans }}</a>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if page.merchant.revocation %}
+            <div class="row">
+                <div class="col">
+                    <a href="#" data-toggle="modal" data-target="#merchantRevocation">Returns & Exchange Policy</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% if page.merchant.publicDescription %}
+    <div class="row merchant-description">
+        <div class="col-12">
+            <div class="merchant-description-holder">
+                <h2 class="text-headline">About the Business</h2>
+                <p>{{ page.merchant.publicDescription|nl2br }}</p>
+            </div>
+        </div>
+    </div>
+{% endif %}
+</div>
+</div>
+
+
+    <div class="merchant-detail-lower">
+        <div class="container">
+            {% block base_main_container %}
+                <div class="container-main">
+                    {% block base_breadcrumb %}
+                        {% if breadcrumbList %}
+                            {% sw_include '@Storefront/storefront/layout/breadcrumb.html.twig' %}
+                        {% endif %}
+                    {% endblock %}
+
+                    {% block base_content %}
+                        {% if page.merchant.products.count %}
+                            <div class="row merchant-listing">
+                                <h3 class="col-12 merchant-listing-headline">{{ 'merchant.ourProducts'|trans }}</h3>
+
+                                <div class="listing-wrapper col-12">
+                                    <div class="products-wrapper row">
+                                        {% for product in page.merchant.products %}
+                                            <div class="product col-sm-6 col-lg-4">
+                                                {% sw_include "@Storefront/storefront/component/product/card/box-standard.html.twig" with {
+                                                    product: product,
+                                                    layout: "standard",
+                                                    displayMode: "cover"
+                                                } %}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                  
+                  {# Add the search bar at the top of the merchant listing section #}
+{# <div class="search-bar">
+    <form action="{{ path('search_products') }}" method="GET">
+        <input type="text" name="query" placeholder="Search products">
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+{% set searchQuery = app.request.query.get('query') %}
+
+{% if page.merchant.products.count %}
+    <div class="row merchant-listing">
+        <h3 class="col-12 merchant-listing-headline">{{ 'merchant.ourProducts'|trans }}</h3>
+        <div class="listing-wrapper col-12">
+            <div class="products-wrapper row">
+                {% for product in page.merchant.products %}
+                    {% if not searchQuery or searchQuery in product.title %}
+                        <div class="product col-sm-6 col-lg-4">
+                            {% sw_include "@Storefront/storefront/component/product/card/box-standard.html.twig" with {
+                                product: product,
+                                layout: "standard",
+                                displayMode: "cover"
+                            } %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}  #}
+
+                  
+                    {% endblock %}
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+
+{% if page.merchant.imprint %}
+    <div class="modal fade" id="merchantImprint" tabindex="-1" role="dialog" aria-hidden="true">
+        <!-- Modal content for imprint -->
+    </div>
+{% endif %}
+
+{% if page.merchant.tos %}
+    <div class="modal fade" id="merchantTos" tabindex="-1" role="dialog" aria-hidden="true">
+        <!-- Modal content for TOS -->
+    </div>
+{% endif %}
+
+{% if page.merchant.privacy %}
+    <div class="modal fade" id="merchantPrivacy" tabindex="-1" role="dialog" aria-hidden="true">
+        <!-- Modal content for privacy policy -->
+    </div>
+{% endif %}
+
+{% if page.merchant.revocation %}
+    <div class="modal fade" id="merchantRevocation" tabindex="-1" role="dialog" aria-hidden="true">
+        <!-- Modal content for revocation policy -->
+    </div>
+{% endif %}
+{% endblock %}
+
+
+{% block base_footer_inner %}
+    {% sw_include 'storefront/component/merchant/banner.html.twig' %}
+    {{ parent() }}
+{% endblock %}

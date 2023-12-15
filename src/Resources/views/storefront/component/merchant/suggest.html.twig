@@ -1,0 +1,42 @@
+<div class="search-suggest js-search-result">
+	<ul class="search-suggest-container">
+		{% if merchants %}
+			{% for merchant in merchants %}
+				{% if merchant %}
+					{% set name = merchant.publicCompanyName %}
+				    {% set id = merchant.id %}
+				    {% set cover = merchant.cover %}
+					
+						
+							<li class="search-suggest-product js-result">
+								<a href="{{ path('storefront.merchant.detail', {'id': id}) }}" title="{{ name }}" class="search-suggest-product-link">
+									<div class="row align-items-center no-gutters">
+										<div class="col-auto search-suggest-product-image-container">
+											{% if cover.url %}
+												<img src="{{ cover.url }}" class="search-suggest-product-image" />
+											{% else %}
+				                                <div class="product-image-placeholder">
+				                                    {% sw_icon 'placeholder' style {
+				                                        'size': 'fluid'
+				                                    } %}
+				                                </div>
+				                            {% endif %}
+										</div>
+										<div class="col search-suggest-product-name">
+											{{ name }}
+										</div>
+									</div>
+								</a>
+							</li>
+						
+					
+				{% endif %}
+			{% endfor %}
+		{% else %}
+			<li class="search-suggest-no-result">
+				No results found.
+			</li>
+		{% endif %}
+			
+	</ul>
+</div>

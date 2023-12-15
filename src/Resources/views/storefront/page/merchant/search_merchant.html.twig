@@ -1,0 +1,31 @@
+{% extends '@BrandCrockWanderlust/storefront/base.html.twig' %}
+
+
+{% block base_content %}
+    {% block page_search %}
+        <div class="cms-page search-page">
+            {% block page_search_headline %}
+                <h1 class="search-headline">
+                    {% block page_search_headline_text %}
+
+                        {{ results_count }} merchants found for "{{ searched }}"
+                    {% endblock %}
+                </h1>
+            {% endblock %}
+            <div class="cms-element-product-listing">
+
+                <div class="row cms-listing-row js-listing-wrapper">
+                    {% for merchant in merchants %}
+                        <div class="cms-listing-col col-sm-6 col-lg-4">
+                            {% block element_merchant_listing_box %}
+                                {% sw_include '@Storefront/storefront/component/merchant/card/box-standard.html.twig' with {
+                                    'merchant': merchant
+                                } %}
+                            {% endblock %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}
